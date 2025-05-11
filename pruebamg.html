@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Gatos</title>
+    <link rel="stylesheet" href="estilos.css">
+    <style>
+        /* Estilos del formulario animado de Blair */
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
+        
+        .formulario-gatuno {
+            font-family: 'Comic Neue', cursive;
+            max-width: 700px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #9c27b0;
+            background-image: 
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23ffffff30" d="M30,50 Q50,30 70,50 Q50,70 30,50" /></svg>'),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle fill="%23ffffff20" cx="50" cy="50" r="10" /></svg>');
+            background-size: 80px 80px, 50px 50px;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            animation: bgTwinkle 8s infinite alternate;
+            border-radius: 20px;
+        }
+        
+        @keyframes bgTwinkle {
+            0% { background-color: #9c27b0; }
+            50% { background-color: #7b1fa2; }
+            100% { background-color: #6a1b9a; }
+        }
+        
+        .formulario-gatuno h1 {
+            text-align: center;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+            animation: titleGlow 3s infinite alternate;
+        }
+        
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+            100% { text-shadow: 0 0 20px rgba(255,255,255,0.8), 0 0 30px #ffeb3b; }
+        }
+        
+        .formulario-gatuno h1::after, .formulario-gatuno h1::before {
+            content: "🐾";
+            position: absolute;
+            font-size: 0.6em;
+            opacity: 0.7;
+            animation: pawJump 2s infinite ease-in-out;
+        }
+        
+        .formulario-gatuno h1::before {
+            right: 0;
+            animation-delay: 0.5s;
+        }
+        
+        @keyframes pawJump {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .formulario-gatuno .form-container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .formulario-gatuno form {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 30px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            color: #333;
+            position: relative;
+            overflow: hidden;
+            border: 3px solid #f8bbd0;
+            transform: translateY(0);
+            transition: transform 0.5s;
+            animation: formPulse 6s infinite ease-in-out;
+        }
+        
+        @keyframes formPulse {
+            0%, 100% { box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
+            50% { box-shadow: 0 15px 40px rgba(171, 71, 188, 0.4); }
+        }
+        
+        .formulario-gatuno form:hover {
+            transform: translateY(-5px);
+            animation: none;
+            box-shadow: 0 20px 40px rgba(171, 71, 188, 0.5);
+        }
+        
+        .formulario-gatuno form::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255, 235, 59, 0.1) 0%, transparent 10%),
+                radial-gradient(circle at 80% 70%, rgba(76, 175, 80, 0.1) 0%, transparent 10%);
+            pointer-events: none;
+            animation: lightMove 15s infinite linear;
+        }
+        
+        @keyframes lightMove {
+            0% { background-position: 0% 0%, 100% 100%; }
+            100% { background-position: 100% 100%, 0% 0%; }
+        }
+        
+        .formulario-gatuno .input-container {
+            margin-bottom: 25px;
+            position: relative;
+            animation: floatUp 1s ease-out forwards;
+            opacity: 0;
+        }
+        
+        @keyframes floatUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .formulario-gatuno .input-container:nth-child(1) { animation-delay: 0.2s; }
+        .formulario-gatuno .input-container:nth-child(2) { animation-delay: 0.4s; }
+        .formulario-gatuno .input-container:nth-child(3) { animation-delay: 0.6s; }
+        
+        .formulario-gatuno label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #7b1fa2;
+            font-size: 1.1em;
+            position: relative;
+            padding-left: 30px;
+            transition: all 0.3s;
+        }
+        
+        .formulario-gatuno label:hover {
+            color: #ab47bc;
+            text-shadow: 0 0 5px rgba(171, 71, 188, 0.3);
+        }
+        
+        .formulario-gatuno label::before {
+            content: "🐱";
+            position: absolute;
+            left: 0;
+            top: -2px;
+            font-size: 1.2em;
+            animation: catBlink 4s infinite;
+        }
+        
+        @keyframes catBlink {
+            0%, 45%, 55%, 100% { transform: scale(1); }
+            48%, 52% { transform: scale(1, 0.1); }
+            50% { transform: scale(1, 0.05); }
+        }
+        
+        .formulario-gatuno input[type="text"],
+        .formulario-gatuno input[type="email"],
+        .formulario-gatuno textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 5px;
+            border: 2px solid #e1bee7;
+            border-radius: 20px;
+            box-sizing: border-box;
+            font-family: 'Comic Neue', cursive;
+            font-size: 1em;
+            background-color: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .formulario-gatuno input[type="text"]:focus,
+        .formulario-gatuno input[type="email"]:focus,
+        .formulario-gatuno textarea:focus {
+            border-color: #ab47bc;
+            box-shadow: 0 0 15px rgba(171, 71, 188, 0.3), inset 0 2px 5px rgba(0,0,0,0.1);
+            outline: none;
+            background-color: #fff;
+            animation: inputGlow 1.5s infinite alternate;
+        }
+        
+        @keyframes inputGlow {
+            0% { box-shadow: 0 0 10px rgba(171, 71, 188, 0.3); }
+            100% { box-shadow: 0 0 20px rgba(171, 71, 188, 0.5); }
+        }
+        
+        .formulario-gatuno textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .formulario-gatuno .botones {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .formulario-gatuno .cat-btn {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            padding: 0;
+            transition: all 0.3s;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2));
+            animation: btnFloat 3s infinite ease-in-out;
+        }
+        
+        @keyframes btnFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .formulario-gatuno .cat-btn:hover {
+            transform: translateY(-10px) scale(1.1);
+            filter: drop-shadow(0 15px 15px rgba(0,0,0,0.3));
+            animation: none;
+        }
+        
+        .formulario-gatuno .cat-btn:active {
+            transform: translateY(-5px) scale(1.05);
+        }
+        
+        .formulario-gatuno .cat-body {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: currentColor;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .formulario-gatuno .cat-btn:hover .cat-body {
+            transform: scale(1.05);
+            box-shadow: inset 0 0 20px rgba(255,255,255,0.5);
+        }
+        
+        .formulario-gatuno .cat-ear {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: currentColor;
+            top: -10px;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            transition: all 0.3s;
+        }
+        
+        .formulario-gatuno .cat-btn:hover .cat-ear {
+            transform: rotate(0deg) scale(1.1);
+        }
+        
+        .formulario-gatuno .cat-ear.left {
+            left: 15px;
+            transform: rotate(-20deg);
+        }
+        
+        .formulario-gatuno .cat-ear.right {
+            right: 15px;
+            transform: rotate(20deg);
+        }
+        
+        .formulario-gatuno .cat-ear::before {
+            content: "";
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: #ffcdd2;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .formulario-gatuno .cat-face {
+            position: absolute;
+            top: 30px;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
+        
+        .formulario-gatuno .cat-eye {
+            display: inline-block;
+            width: 15px;
+            height: 20px;
+            background-color: white;
+            border-radius: 50%;
+            margin: 0 5px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .formulario-gatuno .cat-eye::after {
+            content: "";
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: #333;
+            border-radius: 50%;
+            top: 6px;
+            left: 4px;
+            animation: eyeShine 3s infinite;
+        }
+        
+        @keyframes eyeShine {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+        
+        .formulario-gatuno .cat-nose {
+            width: 10px;
+            height: 8px;
+            background-color: #ffcdd2;
+            border-radius: 50%;
+            margin: 5px auto;
+            position: relative;
+            animation: noseTwitch 5s infinite;
+        }
+        
+        @keyframes noseTwitch {
+            0%, 95%, 100% { transform: scale(1); }
+            97% { transform: scale(1.1); }
+        }
+        
+        .formulario-gatuno .cat-mouth {
+            width: 20px;
+            height: 10px;
+            border-bottom: 2px solid #ffcdd2;
+            border-radius: 0 0 50% 50%;
+            margin: 0 auto;
+            transition: all 0.3s;
+        }
+        
+        .formulario-gatuno .cat-btn:hover .cat-mouth {
+            height: 12px;
+            border-radius: 0 0 40% 40%;
+        }
+        
+        .formulario-gatuno .cat-whisker {
+            position: absolute;
+            width: 20px;
+            height: 1px;
+            background-color: white;
+            top: 60px;
+            transition: all 0.3s;
+        }
+        
+        .formulario-gatuno .cat-btn:hover .cat-whisker {
+            width: 25px;
+        }
+        
+        .formulario-gatuno .cat-whisker.left {
+            left: 20px;
+            transform: rotate(-20deg);
+        }
+        
+        .formulario-gatuno .cat-whisker.right {
+            right: 20px;
+            transform: rotate(20deg);
+        }
+        
+        .formulario-gatuno .cat-whisker.left::before,
+        .formulario-gatuno .cat-whisker.right::before {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 1px;
+            background-color: white;
+            top: 5px;
+            transition: inherit;
+        }
+        
+        .formulario-gatuno .cat-whisker.left::after,
+        .formulario-gatuno .cat-whisker.right::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 1px;
+            background-color: white;
+            top: -5px;
+            transition: inherit;
+        }
+        
+        .formulario-gatuno .cat-btn:hover .cat-whisker.left::before,
+        .formulario-gatuno .cat-btn:hover .cat-whisker.left::after,
+        .formulario-gatuno .cat-btn:hover .cat-whisker.right::before,
+        .formulario-gatuno .cat-btn:hover .cat-whisker.right::after {
+            width: 25px;
+        }
+        
+        .formulario-gatuno .cat-paw {
+            position: absolute;
+            width: 30px;
+            height: 20px;
+            background-color: currentColor;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50% 50% 0 0;
+            transition: all 0.3s;
+        }
+        
+        .formulario-gatuno .cat-btn:hover .cat-paw {
+            height: 25px;
+            bottom: -8px;
+        }
+        
+        .formulario-gatuno .cat-paw::before,
+        .formulario-gatuno .cat-paw::after {
+            content: "";
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: #ffcdd2;
+            border-radius: 50%;
+            bottom: 5px;
+            transition: all 0.3s;
+        }
+        
+        .formulario-gatuno .cat-btn:hover .cat-paw::before,
+        .formulario-gatuno .cat-btn:hover .cat-paw::after {
+            transform: scale(1.2);
+        }
+        
+        .formulario-gatuno .cat-paw::before {
+            left: 5px;
+        }
+        
+        .formulario-gatuno .cat-paw::after {
+            right: 5px;
+        }
+        
+        .formulario-gatuno .btn-text {
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-weight: bold;
+            color: #7b1fa2;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            text-shadow: 0 0 5px rgba(255,255,255,0.5);
+        }
+        
+        .formulario-gatuno .cat-btn:hover .btn-text {
+            transform: scale(1.1);
+            color: #ab47bc;
+        }
+        
+        /* Cat colors */
+        .formulario-gatuno .submit-cat { color: #4caf50; }
+        .formulario-gatuno .reset-cat { color: #f44336; }
+        .formulario-gatuno .help-cat { color: #2196f3; }
+        
+        /* Decorative cats around the form */
+        .formulario-gatuno .decorative-cat {
+            position: absolute;
+            font-size: 2em;
+            z-index: 1;
+            animation: floatCat 8s infinite ease-in-out;
+            opacity: 0.7;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.2));
+            transition: all 0.5s;
+            cursor: pointer;
+        }
+        
+        .formulario-gatuno .decorative-cat:hover {
+            transform: scale(1.5);
+            opacity: 1;
+            animation: none;
+            filter: drop-shadow(0 0 15px rgba(255,255,255,0.7));
+        }
+        
+        @keyframes floatCat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        .formulario-gatuno .cat1 { top: 10%; left: 5%; animation-delay: 0s; }
+        .formulario-gatuno .cat2 { top: 20%; right: 5%; animation-delay: 1s; }
+        .formulario-gatuno .cat3 { bottom: 15%; left: 10%; animation-delay: 2s; }
+        .formulario-gatuno .cat4 { bottom: 25%; right: 10%; animation-delay: 3s; }
+        .formulario-gatuno .cat5 { top: 50%; left: 2%; animation-delay: 0.5s; }
+        .formulario-gatuno .cat6 { top: 60%; right: 2%; animation-delay: 1.5s; }
+        
+        /* Sparkle effect */
+        .formulario-gatuno .sparkle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 10;
+        }
+        
+        /* Fairy lights */
+        .formulario-gatuno .fairy-light {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            animation: lightFlicker 3s infinite alternate;
+        }
+        
+        @keyframes lightFlicker {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        /* Rainbow border animation */
+        @keyframes rainbowBorder {
+            0% { box-shadow: 0 0 0 3px #ff0000; }
+            14% { box-shadow: 0 0 0 3px #ff7f00; }
+            28% { box-shadow: 0 0 0 3px #ffff00; }
+            42% { box-shadow: 0 0 0 3px #00ff00; }
+            57% { box-shadow: 0 0 0 3px #0000ff; }
+            71% { box-shadow: 0 0 0 3px #4b0082; }
+            85% { box-shadow: 0 0 0 3px #9400d3; }
+            100% { box-shadow: 0 0 0 3px #ff0000; }
+        }
+        
+        /* Confetti effect */
+        .formulario-gatuno .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            opacity: 0;
+            z-index: 100;
+            pointer-events: none;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .formulario-gatuno .botones {
+                gap: 20px;
+            }
+            
+            .formulario-gatuno .cat-btn {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .formulario-gatuno h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Menú de navegación -->
+    <ul class="menu">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#acerca-de">Acerca de</a></li>
+        <li><a href="#cuidados">Cuidados</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#museo-virtual">Museo Virtual</a></li>
+        <li><a href="#cuestionario">Cuestionario</a></li>
+    </ul>
+
+    <!-- Sección Inicio -->
+    <div id="inicio" class="seccion">
+        <h1>Bienvenido a la Página de Gatos</h1>
+        <p>Esta es una página dedicada a los gatos, donde encontrarás información, cuidados y curiosidades sobre estos adorables felinos.</p>
+    </div>
+
+    <!-- Sección Acerca de -->
+    <div id="acerca-de" class="seccion">
+        <h2>Acerca de los Gatos</h2>
+        <p>Los gatos son animales domésticos muy populares debido a su independencia, elegancia y cariño. Son mascotas ideales para personas que buscan compañía sin demasiadas exigencias.</p>
+        <img src="https://cdn.pixabay.com/photo/2017/02/20/18/03/cat-2083492_1280.jpg" alt="Gato jugando" title="Gato jugando">
+    </div>
+
+    <!-- Sección Cuidados -->
+    <div id="cuidados" class="seccion">
+        <h2>Cuidados Básicos para Gatos</h2>
+        <p>Aquí tienes algunos consejos para cuidar a tu gato:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Aspecto</th>
+                    <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Alimentación</td>
+                    <td>Proporciona una dieta balanceada y agua fresca.</td>
+                </tr>
+                <tr>
+                    <td>Higiene</td>
+                    <td>Cepilla su pelaje regularmente y limpia su arenero.</td>
+                </tr>
+                <tr>
+                    <td>Salud</td>
+                    <td>Lleva a tu gato al veterinario para chequeos regulares.</td>
+                </tr>
+                <tr>
+                    <td>Juego</td>
+                    <td>Proporciona juguetes y tiempo de juego para mantenerlo activo.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Sección Contacto -->
+    <div id="contacto" class="seccion">
+        <h2>Contacto</h2>
+        <p>Si tienes preguntas o deseas más información sobre gatos, no dudes en contactarnos:</p>
+        <p>Correo electrónico: <a href="mailto:alondramoncadag5--4@dgb.edu.mx">alondramoncadag5--4@dgb.edu.mx</a></p>
+        <p>También puedes visitar este refugio de gatos en Pachuca, Hidalgo: <a href="https://www.ejemplo-refugio-gatos-pachuca.com" target="_blank">Refugio de Gatos en Pachuca</a>.</p>
+        <p>Disfruta de este video de gatos:</p>
+        <video controls>
+            <source src="https://www.youtube.com/embed/QH2-TGUlwu4" type="video/mp4">
+            Tu navegador no soporta la etiqueta de video.
+        </video>
+    </div>
+
+    <!-- Sección Museo Virtual -->
+    <div id="museo-virtual" class="seccion">
+        <h2>Museo Virtual</h2>
+        <p>Explora los archivos subidos relacionados con gatos:</p>
+        <ul>
+            <li><a href="invitacion.html.svg" target="_blank">Invitacion (SVG)</a></li>
+            <li><a href="Arturo.jpeg" target="_blank"> Arturo  (JPEG)</a></li>
+            <li><a href="dibujito.svg" target="_blank">jonathan meza rangel (SVG)</a></li>
+            <li><a href="Raziel.jpeg" target="_blank"> raziel  (JPEG)</a></li>
+            <li><a href="cat.svg" target="_blank"> gerardo  (SVG)</a></li>
+            <li><a href="Manuel.jpeg" target="_blank"> MANUEL  (JPEG)</a></li>
+        </ul>
+    </div>
+
+    <!-- Sección Mapa Mental -->
+    <div id="mapa-mental" class="seccion">
+        <h2>Mapa Mental</h2>
+        <p>Explora este mapa mental :</p>
+        <a href="https://www.canva.com/design/DAGg0CcjcIc/Js9PXo70k5EaJ9Blb90giQ/view?utm_content=DAGg0CcjcIc&utm_campaign=designshare&utm_medium=embeds&utm_source=link" target="_blank" rel="noopener">
+            <div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%; padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden; border-radius: 8px; will-change: transform;">
+                <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+                    src="https://www.canva.com/design/DAGg0CcjcIc/Js9PXo70k5EaJ9Blb90giQ/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+                </iframe>
+            </div>
+        </a>
+        <a href="https://www.canva.com/design/DAGg0CcjcIc/Js9PXo70k5EaJ9Blb90giQ/view?utm_content=DAGg0CcjcIc&utm_campaign=designshare&utm_medium=embeds&utm_source=link" target="_blank" rel="noopener">Colorful Creative Mind Map Brainstorm</a> de ALONDRA LIZETH MONCADA GRANADOS
+    </div>
+
+    <!-- Nueva Sección Cuestionario Animado -->
+    <div id="cuestionario" class="seccion seccion-cuestionario">
+        <h2>Cuestionario Felino Animado</h2>
+        <p>Participa en nuestro cuestionario interactivo sobre gatos con efectos mágicos:</p>
+        
+        <div class="formulario-gatuno">
+            <!-- Decorative cats around the form -->
+            <div class="decorative-cat cat1">😺</div>
+            <div class="decorative-cat cat2">😸</div>
+            <div class="decorative-cat cat3">😹</div>
+            <div class="decorative-cat cat4">😻</div>
+            <div class="decorative-cat cat5">🙀</div>
+            <div class="decorative-cat cat6">😽</div>
+            
+            <div class="form-container">
+                <h1>Formulario Gatuno Mágico ✨</h1>
+                
+                <form action="#" method="post" id="catForm">
+                    <div class="input-container">
+                        <label for="nombre">Nombre completo:</label>
+                        <input type="text" id="nombre" name="nombre" required placeholder="Ej: Michi Rodríguez">
+                    </div>
+                    
+                    <div class="input-container">
+                        <label for="email">Correo electrónico:</label>
+                        <input type="email" id="email" name="email" required placeholder="Ej: michi@ejemplo.com">
+                    </div>
+                    
+                    <div class="input-container">
+                        <label for="comentario">Mensaje:</label>
+                        <textarea id="comentario" name="comentario" required placeholder="¡Déjanos tu mensaje purr-fecto!"></textarea>
+                    </div>
+                    
+                    <div class="botones">
+                        <button type="submit" class="cat-btn submit-cat" id="submitBtn">
+                            <div class="cat-body"></div>
+                            <div class="cat-ear left"></div>
+                            <div class="cat-ear right"></div>
+                            <div class="cat-face">
+                                <div class="cat-eye"></div>
+                                <div class="cat-eye"></div>
+                                <div class="cat-nose"></div>
+                                <div class="cat-mouth"></div>
+                            </div>
+                            <div class="cat-whisker left"></div>
+                            <div class="cat-whisker right"></div>
+                            <div class="cat-paw"></div>
+                            <div class="btn-text">Enviar</div>
+                        </button>
+                        
+                        <button type="reset" class="cat-btn reset-cat">
+                            <div class="cat-body"></div>
+                            <div class="cat-ear left"></div>
+                            <div class="cat-ear right"></div>
+                            <div class="cat-face">
+                                <div class="cat-eye"></div>
+                                <div class="cat-eye"></div>
+                                <div class="cat-nose"></div>
+                                <div class="cat-mouth"></div>
+                            </div>
+                            <div class="cat-whisker left"></div>
+                            <div class="cat-whisker right"></div>
+                            <div class="cat-paw"></div>
+                            <div class="btn-text">Limpiar</div>
+                        </button>
+                        
+                        <button type="button" onclick="mostrarAyuda()" class="cat-btn help-cat">
+                            <div class="cat-body"></div>
+                            <div class="cat-ear left"></div>
+                            <div class="cat-ear right"></div>
+                            <div class="cat-face">
+                                <div class="cat-eye"></div>
+                                <div class="cat-eye"></div>
+                                <div class="cat-nose"></div>
+                                <div class="cat-mouth"></div>
+                            </div>
+                            <div class="cat-whisker left"></div>
+                            <div class="cat-whisker right"></div>
+                            <div class="cat-paw"></div>
+                            <div class="btn-text">Ayuda</div>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function mostrarAyuda() {
+            const ayuda = [
+                "¡Miau! Soy tu ayudante gatuno mágico ✨",
+                "",
+                "🐾 Completa todos los campos:",
+                "  1. Tu nombre completo",
+                "  2. Tu correo electrónico",
+                "  3. Tu mensaje importante",
+                "",
+                "🐱 Botones mágicos:",
+                "  · Enviar: Manda tu mensaje con estilo",
+                "  · Limpiar: Borra todo como por arte de magia",
+                "  · Ayuda: Muestra esta info encantada",
+                "",
+                "¡Pasa el ratón por todos los elementos para descubrir sorpresas! 🎩🐇",
+                "",
+                "¡Gracias por visitarnos! 🐾✨"
+            ].join("\n");
+            
+            createConfetti();
+            alert(ayuda);
+        }
+        
+        // Create sparkle effects
+        document.addEventListener('mousemove', function(e) {
+            if(Math.random() > 0.9) {
+                createSparkle(e.pageX, e.pageY);
+            }
+        });
+        
+        function createSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = x + 'px';
+            sparkle.style.top = y + 'px';
+            
+            // Random color sparkle
+            const colors = ['#ffeb3b', '#4caf50', '#2196f3', '#f44336', '#9c27b0', '#00bcd4'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            sparkle.style.backgroundColor = randomColor;
+            
+            document.body.appendChild(sparkle);
+            
+            const size = Math.random() * 10 + 5;
+            sparkle.style.width = size + 'px';
+            sparkle.style.height = size + 'px';
+            sparkle.style.opacity = '0.8';
+            
+            setTimeout(() => {
+                sparkle.style.transition = 'all 0.5s';
+                sparkle.style.opacity = '0';
+                sparkle.style.transform = 'scale(2) rotate(' + (Math.random() * 360) + 'deg)';
+                setTimeout(() => sparkle.remove(), 500);
+            }, 100);
+        }
+        
+        // Create fairy lights
+        function createFairyLights() {
+            const colors = ['#ffeb3b', '#4caf50', '#2196f3', '#f44336', '#9c27b0', '#00bcd4'];
+            

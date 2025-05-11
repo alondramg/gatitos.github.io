@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta Felina</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f3e9;
+            margin: 0;
+            padding: 20px;
+            background-image: url('https://img.freepik.com/free-vector/paw-seamless-pattern-background_42349-726.jpg');
+            background-attachment: fixed;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid #ffb6b9;
+        }
+        
+        h1 {
+            color: #6d6875;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+            position: relative;
+        }
+        
+        h1::after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 4px;
+            background-color: #ffb6b9;
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+        
+        .cat-icon {
+            display: block;
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #6d6875;
+            font-weight: bold;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0d3de;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: #fff9fb;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            border-color: #ffb6b9;
+            outline: none;
+            background-color: #fff;
+        }
+        
+        textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        .required::after {
+            content: " *";
+            color: #ff6b6b;
+        }
+        
+        button {
+            background-color: #ffb6b9;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto 0;
+            transition: background-color 0.3s;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        button:hover {
+            background-color: #ff8e94;
+        }
+        
+        .cat-paws {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 24px;
+            color: #ffb6b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cat-icon">🐱</div>
+        <h1>Encuesta Felina</h1>
+        
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="nombre" class="required">Nombre</label>
+                <input type="text" id="nombre" name="nombre" required placeholder="¿Cómo te llamas?">
+            </div>
+            
+            <div class="form-group">
+                <label for="email" class="required">Correo electrónico</label>
+                <input type="email" id="email" name="email" required placeholder="tucorreo@ejemplo.com">
+            </div>
+            
+            <div class="form-group">
+                <label for="asunto">Asunto</label>
+                <input type="text" id="asunto" name="asunto" placeholder="Ej: Consulta sobre alimentación felina">
+            </div>
+            
+            <div class="form-group">
+                <label for="mensaje">Mensaje</label>
+                <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos sobre tu gato o tu consulta..."></textarea>
+            </div>
+            
+            <button type="submit">Enviar 🐾</button>
+        </form>
+        
+        <div class="cat-paws">🐾 🐾 🐾</div>
+    </div>
+</body>
+</html>
